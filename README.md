@@ -25,7 +25,7 @@ var _me	= waitus.create(function () {
 });
 
 _me.wait('万事', function () {
-  var evt	= waitus.create(function () {
+  var evt = waitus.create(function () {
     _me.emit('万事');
   });
   evt.wait('最后一件事', function () {
