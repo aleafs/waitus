@@ -2,13 +2,12 @@
 
 ## About
 
-`waitus` 是一个简单的本地文件日志类，提供的特性有：
+假设一个场景，你需要从远程的网络服务（例如zookeeper）中备份一棵树到本地，这个服务能提供的特性有：
 
-* 日志分级，并且可根据需要动态调整日志级别；
-* 根据时间进行日志文件的自动切割；
-* 对Error对象堆栈的记录，支持将全局Error记录在同一个文件，便于监控分析；
-* 支持对日志行进行自定义formatter；
-* 支持日志文件被外部进程移除后自动创建，不导致日志丢失。
+* client端只有异步API；
+* 每次只能访问每个节点的下一层子节点，孙子是找不到的。
+
+你的代码该怎么写？
 
 ## Install
 
@@ -21,13 +20,27 @@ $ npm install waitus
 ```javascript
 
 var waitus = require('waitus');
-
-var log = waitus.create({
-  'file' : 'a.log', 
-  'level' : waitus.WARN | waitus.ERROR
+var _me	= waitus.create(function () {
+  console.log('赤壁，开战！');
 });
-log.debug('ignore');
-log.warn('warn1');
+
+_me.wait('万事', function () {
+  var evt	= waitus.create(function () {
+    _me.emit('万事');
+  });
+  evt.wait('最后一件事', function () {
+    evt.emit('最后一件事');
+  });
+  evt.wait('其他9999件事', function () {
+    evt.emit('其他9999件事');
+  });
+});
+
+_me.wait('东风', function () {
+  setTimeout(function () {
+    _me.emit('东风');
+  }, 1000);
+});
 
 ```
 
