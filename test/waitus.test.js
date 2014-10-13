@@ -29,7 +29,7 @@ describe('waitus proxy', function () {
     _me.wait('case2', function () {
       var _evt2 = waitus.create(function (error) {
         should.ok(error);
-        error.toString().should.include('test1');
+        error.toString().should.containEql('test1');
         _me.emit('case2');
       });
       _evt2.wait('hello3');
