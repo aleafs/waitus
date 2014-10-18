@@ -2,6 +2,10 @@
 
 "use strict";
 
+if ('function' !== (typeof setImmediate)) {
+  var setImmediate = process.nextTick;
+}
+
 exports.create = function (callback) {
 
   /**
@@ -29,7 +33,7 @@ exports.create = function (callback) {
     if (e && !error) {
       error = e;
     }
-    process.nextTick(function () {
+    setImmediate(function () {
       delete waits[evt];
       for (var key in waits) {
         return;
