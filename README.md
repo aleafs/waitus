@@ -1,4 +1,6 @@
+[![npm version](http://img.shields.io/npm/v/waitus.svg)](https://github.com/aleafs/waitus)
 [![Build Status](https://secure.travis-ci.org/aleafs/waitus.png?branch=master)](http://travis-ci.org/aleafs/waitus)
+[![npm download](https://img.shields.io/npm/dm/waitus.svg)](https://npmjs.org/package/waitus)
 
 ## About
 
